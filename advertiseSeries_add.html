@@ -1,0 +1,260 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>亿拍实时竞价广告网络</title>
+	<script src="plugin/jquery-1.11.0.min.js"></script>
+	<script src="plugin/bootstrap.js"></script>
+	<script src="js/common.js"></script>
+	<link rel="stylesheet" type="text/css" href="plugin/bootstrap.css" />
+	<link rel="stylesheet" type="text/css" href="css/css.css" />
+	<!-- 时间插件 -->
+	<link rel="stylesheet" href="plugin/bootstrap-combined.min.css">
+	<link rel="stylesheet" href="plugin/bootstrap-datetimepicker.min.css"
+	type="text/css" media="screen">
+	<style>
+		#tagImage img{width:60px; cursor:pointer;}
+		#tagImage span{margin:0 10px 10px 0; overflow:hidden; display:inline-block; position:relative;}
+		#tagImage span strong{position:absolute; width:100%; height:100%; display:none;  background:#333;
+			opacity:0.7; filter:alpha(opacity=70); z-index:1; left:0; top:0; text-align:center; cursor:pointer;}
+			
+	</style>
+	<script src="plugin/bootstrap-datetimepicker.min.js"
+	type="text/javascript" charset="UTF-8"></script>
+	<script>
+		window.onload=function(){
+			//导航栏效果
+			var aLi=document.getElementById("nav").getElementsByTagName("li");
+			for(var i=0; i<aLi.length; i++){
+				aLi[i].isClick=false;
+				aLi[1].isClick=true;
+				aLi[i].onclick=function(){
+					for(var i=0; i<aLi.length; i++){
+						aLi[i].className="";
+						aLi[i].isClick=false;
+					}
+					this.className="cur";
+					this.isClick=true;
+				}
+				aLi[i].onmouseover=function(){
+					this.className="cur";
+				}
+				aLi[i].onmouseout=function(){
+					if(this.isClick){
+						this.className="cur";
+					}else{
+						this.className="";
+					}
+					
+				}
+			}
+		}
+	</script></head>
+<body style="font-family:'微软雅黑';">
+	<!--页头开始-->
+	<div class="header main">
+		<h1 id="h1"></h1>
+		<div class="user-box">
+			当前用户： <b>运营01</b>
+			&nbsp;&nbsp;&nbsp;
+			<button type="button" class="btn-blue24">
+				<span class="glyphicon glyphicon-share"></span>
+				注销
+			</button>
+			&nbsp;
+			<button type="button" class="btn-blue24">
+				<span class="glyphicon glyphicon-edit"></span>
+				修改密码
+			</button>
+		</div>
+	</div>
+	<!--页头结尾-->
+	<!-- 导航开始-->
+	<div class="navgation main">
+		<ul id="nav">
+			<li >
+				<a href="index.html">
+					<span class="glyphicon glyphicon-stats"></span>
+					受众规划
+				</a>
+			</li>
+			<li class="cur">
+				<a href="advertise.html">
+					<span class="glyphicon glyphicon-stats"></span>
+					投放管理
+				</a>
+			</li>
+			<li>
+				<a href="reportAnalysis.html">
+					<span class="glyphicon glyphicon-stats"></span>
+					报表分析
+				</a>
+			</li>
+			<li>
+				<a href="dataImport.html">
+					<span class="glyphicon glyphicon-stats"></span>
+					数据导入
+				</a>
+			</li>
+
+			<li>
+				<a href="dimensionConfiguration.html">
+					<span class="glyphicon glyphicon-stats"></span>
+					系统设置
+				</a>
+			</li>
+		</ul>
+	</div>
+	<!-- 导航结束-->
+	<!-- 正文开始-->
+	<div class="main">
+		<div class="main-left bg-gray">
+			<div class="left-box">
+				<a href="advertise.html" class="left-line left-cur">
+					广告系列
+					<span class="glyphicon glyphicon-chevron-right r"></span>
+				</a>
+			</div>
+		</div>
+		<div class="main-right">
+			<!-- 正文 -->
+			<form method="post" action="" onsubmit="return checkData()">
+				<input type="hidden" id="time" value="">
+				<input type="hidden" id="industry" value="">
+				<input type="hidden" id="age" value="">
+				<input type="hidden" id="sex" value="">
+				<input type="hidden" id="education" value="">
+				<input type="hidden" id="city" value="">
+				<input type="hidden" id="media" value="">
+
+				<div class="right-title">
+					当前位置：
+					<span class="blue">广告管理</span>
+					&gt; 新建广告系列
+				</div>
+				<div class="right-box">
+					<div class="list-group">
+						<div class="list-group-item adseries-add-head-box">基本信息</div>
+						<div class="list-group-item adseries-add-body-box">
+							<span class="red">*</span>
+							广告系列名称：
+							<input type="text" name="groupName" id="groupName" class="form-control"></div>
+						<div class="list-group-item adseries-add-head-box">
+							<span class="glyphicon glyphicon-list blue"></span> <b>预算设置</b>
+						</div>
+						<div class="list-group-item adseries-add-body-box">
+							<p class="mt5">
+								<span class="red">*</span>
+								总 预 算：
+								<input type="text" name="generalBudget" id="generalBudget" class="form-control">
+								元
+								<span style="color:#9EA4C6;font-size:12px;">（系统最低限价：100元）</span>
+							</p>
+							<p class="mt5">
+								<span class="red">*</span>
+								每日预算：
+								<input type="text" name="dailyBudget" id="dailyBudget" class="form-control">
+								元
+								<span style="color:#9EA4C6;font-size:12px;">（系统最低限价：100元）</span>
+							</p>
+							<script type="text/javascript">
+							$(function() {
+								$('#date1').datetimepicker({
+									format : 'yyyy-MM-dd',
+									language : 'en',
+									pickDate : true,
+									pickTime : false,
+									hourStep : 1,
+									minuteStep : 15,
+									secondStep : 30,
+									inputMask : true
+								});
+								$('#date2').datetimepicker({
+									format : 'yyyy-MM-dd',
+									language : 'en',
+									pickDate : true,
+									pickTime : false,
+									hourStep : 1,
+									minuteStep : 15,
+									secondStep : 30,
+									inputMask : true
+								});
+							});
+						</script>
+
+						</div>
+						<div class="list-group-item adseries-add-head-box">
+							<span class="glyphicon glyphicon-list blue"></span> <b>选择媒体</b>
+						</div>
+						<div class="list-group-item adseries-add-body-box">
+							<p class="mt5">
+								<span class="red">*</span>
+								优化目标：
+								<select name="" id="" >
+									<option value="CPC">CPC</option>
+									<option value="CPM">CPM</option>
+									<option value="CPA">CPA</option>
+									<option value="CTR">CTR</option>
+									<option value="品牌好感度">品牌好感度</option>
+									<option value="阅读量">阅读量</option>
+								</select>
+							</p>
+							<p class="mt5">
+								<span class="red">*</span>
+								关 键 词：
+								<input type="text" class="form-control">
+								<input type="button" value="查找" style="margin:-8px 0 0 5px;" />
+							</p>
+							<p class="mt5" id="tagImage">
+								<span><img src="image/160.png" alt="" /> <strong></strong> </span>
+								<span><img src="image/160.png" alt="" /> <strong></strong> </span>
+								<span><img src="image/160.png" alt="" /> <strong></strong> </span>
+								<span><img src="image/160.png" alt="" /> <strong></strong> </span>
+								<span><img src="image/160.png" alt="" /> <strong></strong> </span>
+								<span><img src="image/160.png" alt="" /> <strong></strong> </span>
+								<span><img src="image/160.png" alt="" /> <strong></strong> </span>
+								<span><img src="image/160.png" alt="" /> <strong></strong> </span>
+								<span><img src="image/160.png" alt="" /> <strong></strong> </span>
+					
+							</p>
+							<script> 
+								
+								$("#tagImage span").each(function(){
+									$(this).click(function(){
+										if($(this).find("strong").css("display")=="none"){
+											$(this).find("strong").css("display","block");
+										}else{
+											$(this).find("strong").css("display","none")
+										}
+									});
+								});
+							</script>
+						</div>
+						<div class="tc mt20">
+							<button type="submit" class="btn-green">
+								<span class="glyphicon glyphicon-ok"></span>
+								完成
+							</button>
+							&nbsp;
+							<button type="button" class="btn-gray" onclick="cancel()">
+								<span class="glyphicon glyphicon-remove"></span>
+								取消
+							</button>
+						</div>
+
+						<!-- 撑高度的 -->
+						<p>&nbsp;</p>
+						<p>&nbsp;</p>
+						<p>&nbsp;</p>
+						<p>&nbsp;</p>
+						<p>&nbsp;</p>
+					</div>
+				</div>
+
+			</form>
+			<!-- 正文,end -->
+		</div>
+	</div>
+	<!-- 正文结束-->
+</body>
+</html>

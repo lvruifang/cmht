@@ -1,0 +1,699 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>亿拍实时竞价广告网络</title>
+	<script src="plugin/jquery-1.11.0.min.js"></script>
+	<script src="plugin/bootstrap.js"></script>
+	<script src="js/common.js"></script>
+	<link rel="stylesheet" type="text/css" href="plugin/bootstrap.css" />
+	<link rel="stylesheet" type="text/css" href="css/css.css" />
+	<!-- 时间插件 -->
+	<link rel="stylesheet" href="plugin/bootstrap-combined.min.css">
+	<link rel="stylesheet" href="plugin/bootstrap-datetimepicker.min.css"
+	type="text/css" media="screen">
+	<script src="plugin/bootstrap-datetimepicker.min.js"
+	type="text/javascript" charset="UTF-8"></script>
+	<script>
+		window.onload=function(){
+			//导航栏效果
+			var aLi=document.getElementById("nav").getElementsByTagName("li");
+			for(var i=0; i<aLi.length; i++){
+				aLi[i].isClick=false;
+				aLi[1].isClick=true;
+				aLi[i].onclick=function(){
+					for(var i=0; i<aLi.length; i++){
+						aLi[i].className="";
+						aLi[i].isClick=false;
+					}
+					this.className="cur";
+					this.isClick=true;
+				}
+				aLi[i].onmouseover=function(){
+					this.className="cur";
+				}
+				aLi[i].onmouseout=function(){
+					if(this.isClick){
+						this.className="cur";
+					}else{
+						this.className="";
+					}
+					
+				}
+			}
+		}
+	</script></head>
+<body style="font-family:'微软雅黑';">
+	<!--页头开始-->
+	<div class="header main">
+		<h1 id="h1"></h1>
+		<div class="user-box">
+			当前用户： <b>运营01</b>
+			&nbsp;&nbsp;&nbsp;
+			<button type="button" class="btn-blue24">
+				<span class="glyphicon glyphicon-share"></span>
+				注销
+			</button>
+			&nbsp;
+			<button type="button" class="btn-blue24">
+				<span class="glyphicon glyphicon-edit"></span>
+				修改密码
+			</button>
+		</div>
+	</div>
+	<!--页头结尾-->
+	<!-- 导航开始-->
+	<div class="navgation main">
+		<ul id="nav">
+			<li >
+				<a href="index.html">
+					<span class="glyphicon glyphicon-stats"></span>
+					受众规划
+				</a>
+			</li>
+			<li class="cur">
+				<a href="advertise.html">
+					<span class="glyphicon glyphicon-stats"></span>
+					投放管理
+				</a>
+			</li>
+			<li>
+				<a href="reportAnalysis.html">
+					<span class="glyphicon glyphicon-stats"></span>
+					报表分析
+				</a>
+			</li>
+			<li>
+				<a href="dataImport.html">
+					<span class="glyphicon glyphicon-stats"></span>
+					数据导入
+				</a>
+			</li>
+
+			<li>
+				<a href="dimensionConfiguration.html">
+					<span class="glyphicon glyphicon-stats"></span>
+					系统设置
+				</a>
+			</li>
+		</ul>
+	</div>
+	<!-- 导航结束-->
+	<!-- 正文开始-->
+	<div class="main">
+		<div class="main-left bg-gray">
+			<div class="left-box">
+				<a href="advertise.html" class="left-line left-cur">
+					广告组
+					<span class="glyphicon glyphicon-chevron-right r"></span>
+				</a>
+			</div>
+		</div>
+		<div class="main-right">
+			<!-- 正文 -->
+			<form method="post" action="" onsubmit="return checkData()">
+				<input type="hidden" id="time" value="">
+				<input type="hidden" id="industry" value="">
+				<input type="hidden" id="age" value="">
+				<input type="hidden" id="sex" value="">
+				<input type="hidden" id="education" value="">
+				<input type="hidden" id="city" value="">
+				<input type="hidden" id="media" value="">
+
+				<div class="right-title">
+					当前位置：
+					<span class="blue">广告管理</span>
+					&gt; 新建广告组
+				</div>
+				<div class="right-box">
+					<div class="list-group">
+						<div class="list-group-item adgroup-add-head-box">基本信息</div>
+						<div class="list-group-item adgroup-add-body-box">
+							<span class="red">*</span>
+							广告组名称：
+							<input type="text" name="groupName" id="groupName" class="form-control"></div>
+						<div class="list-group-item adgroup-add-head-box"> <b>投放媒体</b>
+						</div>
+						<div class="list-group-item adgroup-add-body-box">
+							<ul class="list-group">
+								<li class="list-group-item bg-gray">
+									<label
+								class="dib" id="zhibo_checkbox_ctrl_show">
+										<input
+									type="radio" name="mediaOrientation" value="0">直播</label>
+									&nbsp;&nbsp;&nbsp;
+									<label
+								class="dib" id="shipin_checkbox_ctr2_show">
+										<input
+									type="radio" name="mediaOrientation" value="1">短视频</label>
+									&nbsp;&nbsp;&nbsp;
+									<label
+								class="dib" id="dianbo_checkbox_ctr3_show">
+										<input
+									type="radio" name="mediaOrientation" value="2">点播</label>
+									&nbsp;&nbsp;&nbsp;
+								</li>
+								<li class="list-group-item" id="zhibo_checkbox_box">
+									<div>
+										<p class="mt20 mb5">
+											<label  class="dib">
+											<input class="groupCkQuanX" type="checkbox"  value="0"><b>手机电视</b></label>
+										</p>
+										<label class="dib">
+											<input type="checkbox" name="zhibo" value="1">CCTV-1综合</label>
+										<label class="dib">
+											<input type="checkbox" name="zhibo" value="2">CCTV-2财经</label>
+										<label class="dib">
+											<input type="checkbox" name="zhibo" value="3">CCTV-3综艺</label>
+										<label class="dib">
+											<input type="checkbox" name="zhibo" value="4">CCTV-4国际</label>
+										<label class="dib">
+											<input type="checkbox" name="zhibo" value="5">CCTV-5体育
+										</label>
+										<label class="dib">
+											<input type="checkbox" name="zhibo" value="6">CCTV-5+
+										</label>
+										<label class="dib">
+											<input type="checkbox" name="zhibo" value="7">BTV北京
+										</label>
+										<label class="dib">
+											<input type="checkbox" name="zhibo" value="8">浙江卫视
+										</label>
+										<label class="dib">
+											<input type="checkbox" name="zhibo" value="9">江苏卫视
+										</label>
+										<label class="dib">
+											<input type="checkbox" name="zhibo" value="10">东方卫视
+										</label>
+										<label class="dib">
+											<input type="checkbox" name="zhibo" value="11">深圳卫视
+										</label>
+										<label class="dib">
+											<input type="checkbox" name="zhibo" value="12">安徽卫视
+										</label>
+									</div>
+									<div>
+										<p class="mt20 mb5">
+											<label class="dib">
+											<input class="groupCkQuanX" type="checkbox" name="" value="0"><b>CCTV微视</b></label>
+										</p>
+										
+										<label class="dib">
+											<input type="checkbox" name="zhibo" value="13">CCTV-1综合</label>
+										<label class="dib">
+											<input type="checkbox" name="zhibo" value="14">CCTV-2财经</label>
+										<label class="dib">
+											<input type="checkbox" name="zhibo" value="15">CCTV-3综艺</label>
+										<label class="dib">
+											<input type="checkbox" name="city" value="16">CCTV-4国际</label>
+										<label class="dib">
+											<input type="checkbox" name="zhibo" value="17">CCTV-5体育</label>
+										<label class="dib">
+											<input type="checkbox" name="zhibo" value="18">CCTV-5+</label>
+										<label class="dib">
+											<input type="checkbox" name="zhibo" value="19">CCTV-6电影</label>
+										<label class="dib">
+											<input type="checkbox" name="zhibo" value="20">CCTV-8电视剧</label>
+										<label class="dib">
+											<input type="checkbox" name="zhibo" value="21">CCTV-10科教</label>
+										<label class="dib">
+											<input type="checkbox" name="city" value="22">CCTV-12法制</label>
+										<label class="dib">
+											<input type="checkbox" name="zhibo" value="23">CCTV-13新闻</label>
+										<label class="dib">
+											<input type="checkbox" name="zhibo" value="24">GTV竞技游戏</label>
+									</div>
+								</li>
+								<li class="list-group-item" id="shipin_checkbox_box">
+									<div>
+										<p class="mt20 mb5">
+											<label  class="dib">
+											<input class="groupCkQuanX" type="checkbox"  value="0"><b>美拍</b></label>
+										</p>
+										<label class="dib">
+											<input type="checkbox" name="shipin" value="1">技能型</label>
+										<label class="dib">
+											<input type="checkbox" name="shipin" value="2">搞笑型</label>
+										<label class="dib">
+											<input type="checkbox" name="shipin" value="3">IP型</label>
+										<label class="dib">
+											<input type="checkbox" name="shipin" value="4">专项型</label>
+									</div>
+									<div>
+										<p class="mt20 mb5">
+											<label class="dib">
+											<input class="groupCkQuanX" type="checkbox" name="" value="0"><b>VS-Media</b></label>
+										</p>
+										
+										<label class="dib">
+											<input type="checkbox" name="shipin" value="5">搞笑IP</label>
+										<label class="dib">
+											<input type="checkbox" name="shipin" value="6">旅行IP</label>
+										<label class="dib">
+											<input type="checkbox" name="shipin" value="7">赛车IP</label>
+										<label class="dib">
+											<input type="checkbox" name="shipin" value="8">韩国IP</label>
+										<label class="dib">
+											<input type="checkbox" name="shipin" value="9">音乐IP</label>
+									</div>
+								</li>
+								<li class="list-group-item" id="dianbo_checkbox_box">
+										<label  class="dib">
+											<input class="groupCkQuanX1" type="checkbox"  value="0">全部</label>
+										<label class="dib">
+											<input type="checkbox" name="dianbo" value="1">推荐</label>
+										<label class="dib">
+											<input type="checkbox" name="dianbo" value="2">订阅</label>
+										<label class="dib">
+											<input type="checkbox" name="dianbo" value="3">电视剧</label>
+										<label class="dib">
+											<input type="checkbox" name="dianbo" value="4">电影</label>
+										<label class="dib">
+											<input type="checkbox" name="dianbo" value="5">体育</label>
+										<label class="dib">
+											<input type="checkbox" name="dianbo" value="6">综艺</label>
+										<label class="dib">
+											<input type="checkbox" name="dianbo" value="7">动漫</label>
+										<label class="dib">
+											<input type="checkbox" name="dianbo" value="8">资讯</label>
+										<label class="dib">
+											<input type="checkbox" name="dianbo" value="9">娱乐</label>
+											<label class="dib">
+											<input type="checkbox" name="dianbo" value="10">搞笑</label>
+											<label class="dib">
+											<input type="checkbox" name="dianbo" value="11">少儿</label>
+								</li>
+							</ul>
+						</div>
+						<div class="list-group-item adgroup-add-head-box"> <b>投放场景</b>
+						</div>
+						<div class="list-group-item adgroup-add-body-box">
+							<ul class="list-group">
+								<li class="list-group-item bg-gray">
+									<span>竞品定向</span>
+									&nbsp;&nbsp;&nbsp;
+									<label
+								class="dib" id="jingpin_checkbox_ctr1_hide">
+										<input
+									type="radio" name="jingpinOrientation" value="1" checked>不限</label>
+									&nbsp;&nbsp;&nbsp;
+									<label
+								class="dib" id="jingpin_checkbox_ctr2_show">
+										<input
+									type="radio" name="jingpinOrientation" value="1">自定义</label>
+									&nbsp;&nbsp;&nbsp;
+								</li>
+								<li class="list-group-item" id="jingpin_checkbox_box" >
+									<div>
+										<p class="mt20 mb5">
+											<label  class="dib">
+											<input class="groupCkQuanX" type="checkbox"  value="0"><b>酒水</b></label>
+										</p>
+										<label class="dib">
+											<input type="checkbox" name="jingpin" value="1">白酒</label>
+										<label class="dib">
+											<input type="checkbox" name="jingpin" value="2">啤酒</label>
+										<label class="dib">
+											<input type="checkbox" name="jingpin" value="3">红酒</label>
+									</div>
+									<div>
+										<p class="mt20 mb5">
+											<label class="dib">
+											<input class="groupCkQuanX" type="checkbox" name="" value="0"><b>食品</b></label>
+										</p>
+										
+										<label class="dib">
+											<input type="checkbox" name="jingpin" value="4">德芙</label>
+										<label class="dib">
+											<input type="checkbox" name="jingpin" value="5">金帝</label>
+										<label class="dib">
+											<input type="checkbox" name="jingpin" value="6">雀巢</label>
+										<label class="dib">
+											<input type="checkbox" name="jingpin" value="7">吉百利</label>
+										<label class="dib">
+											<input type="checkbox" name="jingpin" value="8">可比克</label>
+										<label class="dib">
+											<input type="checkbox" name="jingpin" value="9">达能</label>
+									</div>
+									<div>
+										<p class="mt20 mb5">
+											<label class="dib">
+											<input class="groupCkQuanX" type="checkbox" name="" value="0"><b>日化</b></label>
+										</p>
+										
+										<label class="dib">
+											<input type="checkbox" name="jingpin" value="10">保洁</label>
+										<label class="dib">
+											<input type="checkbox" name="jingpin" value="11">化妆品</label>
+										<label class="dib">
+											<input type="checkbox" name="jingpin" value="12">个人卫生用品</label>
+									</div>
+											<div>
+										<p class="mt20 mb5">
+											<label class="dib">
+											<input class="groupCkQuanX" type="checkbox" name="" value="0"><b>服饰</b></label>
+										</p>
+										
+										<label class="dib">
+											<input type="checkbox" name="jingpin" value="13">CHANEL</label>
+										<label class="dib">
+											<input type="checkbox" name="jingpin" value="14">D&G</label>
+										<label class="dib">
+											<input type="checkbox" name="jingpin" value="15">COACH</label>
+										<label class="dib">
+											<input type="checkbox" name="jingpin" value="16">GUCCI</label>
+										<label class="dib">
+											<input type="checkbox" name="jingpin" value="17">LV</label>
+										<label class="dib">
+											<input type="checkbox" name="jingpin" value="18">CK</label>
+									</div>
+								</li>
+							</ul>
+
+							<ul class="list-group">
+								<li class="list-group-item bg-gray">
+									<span>场景定向</span>
+									&nbsp;&nbsp;&nbsp;
+									<label
+								class="dib" id="scene_checkbox_ctr1_hide">
+										<input
+									type="radio" name="sceneOrientation" value="1" checked>不限</label>
+									&nbsp;&nbsp;&nbsp;
+									<label
+								class="dib" id="scene_checkbox_ctr2_show">
+										<input
+									type="radio" name="sceneOrientation" value="1">自定义</label>
+									&nbsp;&nbsp;&nbsp;
+								</li>
+								<li class="list-group-item" id="scene_checkbox_box" >
+									<div>
+										<p class="mt20 mb5">
+											<label  class="dib">
+											<input class="groupCkQuanX" type="checkbox"  value="0"><b>交通类</b></label>
+										</p>
+										<label class="dib">
+											<input type="checkbox" name="scene" value="1">巴士车内</label>
+										<label class="dib">
+											<input type="checkbox" name="scene" value="2">船甲板</label>
+										<label class="dib">
+											<input type="checkbox" name="scene" value="3">灯塔</label>
+										<label class="dib">
+											<input type="checkbox" name="scene" value="4">地铁站/站台</label>
+										<label class="dib">
+											<input type="checkbox" name="scene" value="5">发动机室</label>
+										<label class="dib">
+											<input type="checkbox" name="scene" value="6">港口</label>
+									</div>
+									<div>
+										<p class="mt20 mb5">
+											<label class="dib">
+											<input class="groupCkQuanX" type="checkbox" name="" value="0"><b>运动类</b></label>
+										</p>
+										
+										<label class="dib">
+											<input type="checkbox" name="scene" value="13">棒球场</label>
+										<label class="dib">
+											<input type="checkbox" name="scene" value="14">保龄球场</label>
+										<label class="dib">
+											<input type="checkbox" name="scene" value="15">冰屋</label>
+										<label class="dib">
+											<input type="checkbox" name="scene" value="16">高尔夫球场</label>
+										<label class="dib">
+											<input type="checkbox" name="scene" value="17">海崖</label>
+										<label class="dib">
+											<input type="checkbox" name="scene" value="18">滑雪场</label>
+									</div>
+											<div>
+										<p class="mt20 mb5">
+											<label class="dib">
+											<input class="groupCkQuanX" type="checkbox" name="" value="0"><b>建筑/景点类</b></label>
+										</p>
+										
+										<label class="dib">
+											<input type="checkbox" name="scene" value="13">办公室</label>
+										<label class="dib">
+											<input type="checkbox" name="scene" value="14">博物馆</label>
+										<label class="dib">
+											<input type="checkbox" name="scene" value="15">城堡</label>
+										<label class="dib">
+											<input type="checkbox" name="scene" value="15">村舍花园</label>
+										<label class="dib">
+											<input type="checkbox" name="scene" value="15">大教堂/室外</label>
+										<label class="dib">
+											<input type="checkbox" name="scene" value="15">大厦</label>
+									</div>
+											<div>
+										<p class="mt20 mb5">
+											<label class="dib">
+											<input class="groupCkQuanX" type="checkbox" name="" value="0"><b>娱乐类</b></label>
+										</p>
+										
+										<label class="dib">
+											<input type="checkbox" name="scene" value="13">冰淇淋商店</label>
+										<label class="dib">
+											<input type="checkbox" name="scene" value="14">餐厅</label>
+										<label class="dib">
+											<input type="checkbox" name="scene" value="15">服装店</label>
+										<label class="dib">
+											<input type="checkbox" name="scene" value="15">购物中心</label>
+										<label class="dib">
+											<input type="checkbox" name="scene" value="15">画廊</label>
+										<label class="dib">
+											<input type="checkbox" name="scene" value="15">酒吧</label>
+									</div>
+								</li>
+							</ul>
+
+							<ul class="list-group" >
+								<li class="list-group-item bg-gray">
+									<span>人脸定向</span>
+									&nbsp;&nbsp;&nbsp;
+									<label
+								class="dib" id="face_checkbox_ctr1_hide">
+										<input
+									type="radio" name="faceOrientation" value="1" checked>不限</label>
+									&nbsp;&nbsp;&nbsp;
+									<label
+								class="dib" id="face_checkbox_ctr2_show">
+										<input
+									type="radio" name="faceOrientation" value="1">自定义</label>
+									&nbsp;&nbsp;&nbsp;
+								</li>
+								<li class="list-group-item" id="face_checkbox_box" >
+									<p class="mt20 mb5">
+										<label  class="dib">
+										<input  type="checkbox" name="face" value="1"><b>老人</b></label>
+									</p>
+									<p class="mt20 mb5">
+										<label  class="dib">
+										<input  type="checkbox" name="face"  value="2"><b>小孩</b></label>
+									</p>
+									<p class="mt20 mb5">
+										<label  class="dib">
+										<input  type="checkbox" name="face"  value="3"><b>女人</b></label>
+									</p>
+									<p class="mt20 mb5">
+										<label  class="dib">
+										<input  type="checkbox" name="face"  value="4"><b>男人</b></label>
+									</p>
+									<div>
+										<p class="mt20 mb5">
+											<label  class="dib">
+											<input  type="checkbox" class="groupCkQuanX" name="face"  value="5"><b>明星</b></label>
+										</p>
+										<label class="dib">
+											<input type="checkbox" name="face" value="6">王子文</label>
+										<label class="dib">
+											<input type="checkbox" name="face" value="7">刘涛</label>
+										<label class="dib">
+											<input type="checkbox" name="face" value="8">Angelababy</label>
+										<label class="dib">
+											<input type="checkbox" name="face" value="9">林允儿</label>
+										<label class="dib">
+											<input type="checkbox" name="face" value="10">蒋欣</label>
+										<label class="dib">
+											<input type="checkbox" name="face" value="11">赵丽颖</label>
+									</div>
+								</li>
+							</ul>
+
+							<ul class="list-group">
+								<li class="list-group-item bg-gray">
+									<span>情绪定向</span>
+									&nbsp;&nbsp;&nbsp;
+									<label
+								class="dib" id="emotion_checkbox_ctr1_hide">
+										<input
+									type="radio" name="emotionOrientation" value="1" checked>不限</label>
+									&nbsp;&nbsp;&nbsp;
+									<label
+								class="dib" id="emotion_checkbox_ctr2_show">
+										<input
+									type="radio" name="emotionOrientation" value="1">自定义</label>
+									&nbsp;&nbsp;&nbsp;
+								</li>
+								<li class="list-group-item" id="emotion_checkbox_box" >
+									<label class="dib">
+											<input type="checkbox" name="emotion" value="1">喜</label>
+									<label class="dib">
+											<input type="checkbox" name="emotion" value="2">怒</label>
+									<label class="dib">
+											<input type="checkbox" name="emotion" value="3">哀</label>
+									<label class="dib">
+											<input type="checkbox" name="emotion" value="4">乐</label>
+									<label class="dib">
+											<input type="checkbox" name="emotion" value="5">惊</label>
+									<label class="dib">
+											<input type="checkbox" name="emotion" value="6">恐</label>
+									<label class="dib">
+											<input type="checkbox" name="emotion" value="7">思</label>
+								</li>
+							</ul>
+
+							<ul class="list-group">
+								<li class="list-group-item bg-gray">
+									<span>语义定向</span>&nbsp;&nbsp;&nbsp;
+									<label class="dib" id="yuyi_checkbox_ctrl_hide">
+										<input type="radio" name="yuyiOrientation" checked value="0" checked>不限</label>
+									&nbsp;&nbsp;&nbsp;
+									<label class="dib" id="yuyi_checkbox_ctr2_show">
+										<input type="radio" name="yuyiOrientation" value="1">自定义</label>
+									&nbsp;&nbsp;&nbsp;
+								</li>
+								<li class="list-group-item" id="yuyi_checkbox_box">
+									<div class="mt15 yuyiZdy">
+										<div class="mt10">
+											<input type="text" class="yuyiText" value="请输入语义">
+												&nbsp&nbsp&nbsp
+												<span class="glyphicon glyphicon-plus-sign green" style="cursor:pointer; font-size:16px;"></span>
+											</span>
+										</div>
+										<div class="mt10 yuyiYdy">
+											<p class="dib">已定义语义：</p>
+											&nbsp&nbsp&nbsp
+											<div class="dib">
+												<a class="bianji" href="javascript:;">编辑</a>
+											</div>
+										</div>
+									</div>
+								</li>
+							</ul>
+
+							<ul class="list-group">
+								<li class="list-group-item bg-gray">
+									<span>音乐定向</span>&nbsp;&nbsp;&nbsp;
+									<label class="dib" id="music_checkbox_ctrl_hide">
+										<input type="radio" name="musicOrientation" checked value="0" checked>不限</label>
+									&nbsp;&nbsp;&nbsp;
+									<label class="dib" id="music_checkbox_ctr2_show">
+										<input type="radio" name="musicOrientation" value="1">自定义</label>
+									&nbsp;&nbsp;&nbsp;
+								</li>
+								<li class="list-group-item" id="music_checkbox_box">
+									<div class="mt15 musicZdy">
+										<div class="mt10">
+											<input type="text" class="musicText" value="请输入音乐">
+												&nbsp&nbsp&nbsp
+												<span class="glyphicon glyphicon-plus-sign green" style="cursor:pointer; font-size:16px;"></span>
+											</span>
+										</div>
+										<div class="mt10 musicYdy">
+											<p class="dib">已定义音乐：</p>
+											&nbsp&nbsp&nbsp
+											<div class="dib">
+											
+												<a class="bianji" href="javascript:;">编辑</a>
+											</div>
+										</div>
+									</div>
+								</li>
+							</ul>
+
+							<ul class="list-group">
+								<li class="list-group-item bg-gray">
+									<span>设备定向</span>&nbsp;&nbsp;&nbsp;
+									<label
+								class="dib" id="device_checkbox_ctr1_hide">
+										<input
+									type="radio" name="deviceOrientation" value="0" checked>不限</label>
+									&nbsp;&nbsp;&nbsp;
+									<label
+								class="dib" id="device_checkbox_ctr2_show">
+										<input
+									type="radio" name="deviceOrientation" value="1">自定义</label>
+									&nbsp;&nbsp;&nbsp;
+								</li>
+								<li class="list-group-item" id="device_checkbox_box" >
+									<label class="dib">
+											<input type="checkbox" name="device" value="1">苹果</label>
+									<label class="dib">
+											<input type="checkbox" name="device" value="2">小米</label>
+									<label class="dib">
+											<input type="checkbox" name="device" value="3">三星</label>
+									<label class="dib">
+											<input type="checkbox" name="device" value="4">华为</label>
+									<label class="dib">
+											<input type="checkbox" name="device" value="5">vivo</label>
+									<label class="dib">
+											<input type="checkbox" name="device" value="6">OPPO</label>
+									<label class="dib">
+											<input type="checkbox" name="device" value="7">魅族</label>
+									<label class="dib">
+											<input type="checkbox" name="device" value="8">联想</label>
+									<label class="dib">
+											<input type="checkbox" name="device" value="9">其他</label>
+								</li>
+							</ul>
+
+							<ul class="list-group">
+								<li class="list-group-item bg-gray">
+									<span>终端定向</span>&nbsp;&nbsp;&nbsp;
+									<label
+								class="dib" id="terminal_checkbox_ctr1_hide">
+										<input
+									type="radio" name="terminalOrientation" value="0" checked>不限</label>
+									&nbsp;&nbsp;&nbsp;
+									<label
+								class="dib" id="terminal_checkbox_ctr2_show">
+										<input
+									type="radio" name="terminalOrientation" value="1">自定义</label>
+									&nbsp;&nbsp;&nbsp;
+								</li>
+								<li class="list-group-item" id="terminal_checkbox_box" >
+									<label class="dib">
+											<input type="checkbox" name="terminal" value="1">IOS</label>
+									<label class="dib">
+											<input type="checkbox" name="terminal" value="2">andriod</label>
+									<label class="dib">
+											<input type="checkbox" name="terminal" value="3">其他</label>
+								</li>
+							</ul>
+						</div>
+						<div class="tc mt20">
+							<button type="submit" class="btn-green">
+								<span class="glyphicon glyphicon-ok"></span>
+								完成
+							</button>
+							&nbsp;
+							<button type="button" class="btn-gray" onclick="cancel()">
+								<span class="glyphicon glyphicon-remove"></span>
+								取消
+							</button>
+						</div>
+
+						<!-- 撑高度的 -->
+						<p>&nbsp;</p>
+						<p>&nbsp;</p>
+						<p>&nbsp;</p>
+						<p>&nbsp;</p>
+						<p>&nbsp;</p>
+					</div>
+				</div>
+
+			</form>
+			<!-- 正文,end -->
+		</div>
+	</div>
+	<!-- 正文结束-->
+</body>
+</html>

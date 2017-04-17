@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>亿拍实时竞价广告网络</title>
+	<link rel="stylesheet" href="css/css.css" />
+	<link rel="stylesheet" href="plugin/bootstrap.css" />
+	<script type="text/javascript" src="js/jquery-1.4.4.min.js"></script>
+	<script type="text/javascript" src="plugin/bootstrap.js"></script>
+	<script>
+		window.onload=function(){
+			//导航栏效果
+			var aLi=document.getElementById("nav").getElementsByTagName("li");
+			for(var i=0; i<aLi.length; i++){
+				aLi[i].isClick=false;
+				aLi[2].isClick=true;
+				aLi[i].onclick=function(){
+					for(var i=0; i<aLi.length; i++){
+						aLi[i].className="";
+						aLi[i].isClick=false;
+					}
+					this.className="cur";
+					this.isClick=true;
+				}
+				aLi[i].onmouseover=function(){
+					this.className="cur";
+				}
+				aLi[i].onmouseout=function(){
+					if(this.isClick){
+						this.className="cur";
+					}else{
+						this.className="";
+					}
+					
+				}
+			}
+		}
+	</script>
+</head>
+<body>
+	<!--页头开始-->
+	<div class="header main">
+		<h1 id="h1"></h1>
+		<div class="user-box">
+			当前用户： <b>运营01</b>
+			&nbsp;&nbsp;&nbsp;
+			<button type="button" class="btn-blue24">
+				<span class="glyphicon glyphicon-share"></span>
+				 注销
+			</button>&nbsp;
+			<button type="button" class="btn-blue24">
+				<span class="glyphicon glyphicon-edit"></span>
+				修改密码
+			</button>
+		</div>
+	</div>
+	<!--页头结尾-->
+	<!-- 导航开始-->
+		<div class="navgation main">
+		<ul id="nav">
+			<li >
+				<a href="index.html">
+					<span class="glyphicon glyphicon-stats"></span>
+					受众规划
+				</a>
+			</li>
+			<li>
+				<a href="advertise.html">
+					<span class="glyphicon glyphicon-stats"></span>
+					投放管理
+				</a>
+			</li>
+			<li class="cur">
+				<a href="reportAnalysis.html">
+					<span class="glyphicon glyphicon-stats"></span>
+					报表分析
+				</a>
+			</li>
+			<li>
+				<a href="dataImport.html">
+					<span class="glyphicon glyphicon-stats"></span>
+					数据导入
+				</a>
+			</li>
+
+			<li>
+				<a href="dimensionConfiguration.html">
+					<span class="glyphicon glyphicon-stats"></span>
+					系统设置
+				</a>
+			</li>
+		</ul>
+	</div>
+	<!-- 导航结束-->
+	<!-- 正文开始-->
+	<div class="main">
+		<div class="main-left">
+			<div class="left-box">
+				<p class="ml5">
+					<span class="glyphicon glyphicon-user gray"></span>
+					账户概览
+				</p>
+				<div class="account-money">
+					账户余额：
+					<span class="blue">￥5.48</span>
+				</div>
+			</div>
+		</div>
+			<iframe width=840 height=1400 frameborder=0 scrolling=no src="advertiseGroup_main.html"></iframe>
+	
+	</div>
+	<!-- 正文结束-->
+
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>亿拍实时竞价广告网络</title>
+	<link rel="stylesheet" href="plugin/bootstrap.css" />
+	<link rel="stylesheet" href="css/css.css" />
+	<script type="text/javascript" src="plugin/jquery-1.11.0.min.js"></script>
+	<script type="text/javascript" src="plugin/bootstrap.js"></script>
+	<script>
+		window.onload=function(){
+			//导航栏效果
+			var aLi=document.getElementById("nav").getElementsByTagName("li");
+			for(var i=0; i<aLi.length; i++){
+				aLi[i].isClick=false;
+				aLi[1].isClick=true;
+				aLi[i].onclick=function(){
+					for(var i=0; i<aLi.length; i++){
+						aLi[i].className="";
+						aLi[i].isClick=false;
+					}
+					this.className="cur";
+					this.isClick=true;
+				}
+				aLi[i].onmouseover=function(){
+					this.className="cur";
+				}
+				aLi[i].onmouseout=function(){
+					if(this.isClick){
+						this.className="cur";
+					}else{
+						this.className="";
+					}
+					
+				}
+			}
+		}
+	</script></head>
+<body>
+	<!--页头开始-->
+	<div class="header main">
+		<h1 id="h1"></h1>
+		<div class="user-box">
+			当前用户： <b>运营01</b>
+			&nbsp;&nbsp;&nbsp;
+			<button type="button" class="btn-blue24">
+				<span class="glyphicon glyphicon-share"></span>
+				注销
+			</button>
+			&nbsp;
+			<button type="button" class="btn-blue24">
+				<span class="glyphicon glyphicon-edit"></span>
+				修改密码
+			</button>
+		</div>
+	</div>
+	<!--页头结尾-->
+	<!-- 导航开始-->
+	<div class="navgation main">
+		<ul id="nav">
+			<li >
+				<a href="index.html">
+					<span class="glyphicon glyphicon-stats"></span>
+					受众规划
+				</a>
+			</li>
+			<li >
+				<a href="advertise.html">
+					<span class="glyphicon glyphicon-stats"></span>
+					投放管理
+				</a>
+			</li>
+			<li class="cur">
+				<a href="media.html">
+					<span class="glyphicon glyphicon-stats"></span>
+					媒体管理
+				</a>
+			</li>
+			<li>
+				<a href="reportAnalysis.html">
+					<span class="glyphicon glyphicon-stats"></span>
+					报表分析
+				</a>
+			</li>
+			<li>
+				<a href="dimensionConfiguration.html">
+					<span class="glyphicon glyphicon-stats"></span>
+					系统设置
+				</a>
+			</li>
+		</ul>
+	</div>
+	<!-- 导航结束-->
+	<!-- 正文开始-->
+	<div class="main">
+		<div class="main-left bg-gray">
+			<div class="left-box">
+				<a href="advertise.html" class="left-line left-cur">
+					媒体系列
+					<span class="glyphicon glyphicon-chevron-right r"></span>
+				</a>
+			</div>
+		</div>
+		<div class="main-right">
+			<!-- 正文 -->
+			<form name="groupForm" action="" method="post">
+				<input type="hidden" value="" name="id" id="id">
+				<input type="hidden" value="" name="groupId" id="groupId">
+				<input type="hidden" value="" name="groupName" id="groupName"></form>
+			<div class="right-title">
+				当前位置：
+				<span class="blue">媒体管理</span>
+				&gt; 媒体系列
+			</div>
+			<div class="line-title">
+				<span class="glyphicon glyphicon-list-alt"></span>
+				媒体系列
+			</div>
+			<div class="right-box">
+				<div class="panel panel-default">
+					<!-- Default panel contents -->
+					<c:if test="${user.role==4}">
+						<div class="panel-heading" style="background:#FFF;">
+							<a href="media_add.html" class="btn-blue24">
+								<span class="glyphicon glyphicon-plus-sign"></span>
+								新建媒体系列
+							</a>
+						</div>
+					</c:if>
+					<!-- Table -->
+				<table class="table list_table" style="width:100%">
+					<tr class="table-head" style="border-top:1px solid #d0d0d0;border-bottom-width:0px">
+						<td>媒体名称</td>
+						<td>添加日期</td>
+					</tr>
+				</table>
+				</div>
+				
+		</div>
+<!-- 正文,end -->
+</div>
+</div>
+<!-- 正文结束-->
+</body>
+</html>
